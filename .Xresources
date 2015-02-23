@@ -1,0 +1,167 @@
+! tomorrow night theme
+*foreground:   #c5c8c6
+*background:   #1d1f21
+*cursorColor:  #aeafad
+*color0:       #000000
+*color1:       #912226
+*color2:       #778900
+*color3:       #ae7b00
+*color4:       #1d2594
+*color5:       #682a9b
+*color6:       #2b6651
+*color7:       #929593
+*color8:       #666666
+*color9:       #cc6666
+*color10:      #b5bd68
+*color11:      #f0c674
+*color12:      #81a2be
+*color13:      #b294bb
+*color14:      #8abeb7
+*color15:      #ecebec
+
+! include tomorrow night theme
+!#include ".config/xresources/TomorrowNight"
+!#include ".config/xresources/Tomorrow-Night-Bright"
+!!colors
+!*foreground:            #d3d3d3
+!*background:            #000000
+!*cursorColor:		orange
+!*color0:		#151515
+!*color8:		#505450
+!*color1:		#bf7979
+!*color9:		#f4a45f
+!*color2:		#97b26b
+!*color10:		#c5f779
+!*color3:		#cdcda1
+!*color11:		#ffffaf
+!*color4:		#4a5463
+!*color12:		#7d8794
+!*color5:		#9c3885
+!*color13:		#e628ba
+!*color6:		#88aadd
+!*color14:		#99ccff
+!*color7:		#ffffff
+!*color15:		#dedede
+
+!Theme Six
+!*background: rgb:be/be/be
+!*foreground: rgb:21/21/21
+!*color0:     rgb:00/00/00
+!*color1:     rgb:bf/72/76
+!*color2:     rgb:86/af/80
+!*color3:     rgb:96/8a/38
+!*color4:     rgb:36/73/b5
+!*color5:     rgb:9a/70/b2
+!*color6:     rgb:7a/be/cc
+!*color7:     rgb:db/db/db
+!*color8:     rgb:66/92/af
+!*color9:     rgb:e5/50/5f
+!*color10:    rgb:87/bc/87
+!*color11:    rgb:e0/d9/5c
+!*color12:    rgb:1b/85/d6
+!*color13:    rgb:ad/73/ba
+!*color14:    rgb:33/8e/aa
+!*color15:    rgb:f4/f4/f4
+!
+!Theme Twelve
+!*foreground: rgb:ff/ff/ff
+!*background: rgb:00/00/00
+!*color0:     rgb:00/00/00
+!*color1:     rgb:bf/72/76
+!*color2:     rgb:86/af/80
+!*color3:     rgb:96/8a/38
+!*color4:     rgb:36/73/b5
+!*color5:     rgb:9a/70/b2
+!*color6:     rgb:7a/be/cc
+!*color7:     rgb:db/db/db
+!*color8:     rgb:66/92/af
+!*color9:     rgb:e5/50/5f
+!*color10:    rgb:87/bc/87
+!*color11:    rgb:e0/d9/5c
+!*color12:    rgb:1b/85/d6
+!*color13:    rgb:ad/73/ba
+!*color14:    rgb:33/8e/aa
+!*color15:    rgb:f4/f4/f4
+
+!-- Xft settings -- !
+Xft.dpi:        96
+Xft.antialias:  true
+Xft.rgba:       rgb
+Xft.hinting:    true
+Xft.hintstyle:  hintslight
+
+!urxvt settings
+urxvt*geometry:         107x33
+!urxvt*saveLines:        32767
+urxvt*scrollTtyKeypress:true
+urxvt*scrollTtyOutput:  false
+urxvt*scrollBar:        false
+urxvt*secondaryscroll:  true
+urxvt*loginShell:       true
+urxvt*internalBorder:   5
+urxvt*termName:         rxvt-unicode
+urxvt*inheritPixmap:    true
+urxvt*transparent:		true
+urxvt*shading:          75
+urxvt*tintColor:        #252525
+!urxvt*font:             xft:Bitstream Vera Sans Mono:pixelsize=14
+!urxvt*font:             xft:Terminus:size=10
+urxvt*font:		xft:Inconsolata:size=10
+!urxvt*font:				xft:Ubuntu Mono:pixelsize=12
+!urxvt*font:				xft:Envy Code R:size=9
+!urxvt*font:				xft:Ubuntu Mono for Powerline:size=9
+urxvt*cutchars:         "()*,<>[]{}|"
+urxvt*print-pipe:       cat > $(echo urxvt.dump.`date +'%Y%M%d%H%m%S'`)
+urxvt*secondaryScroll:  true
+urxvt*mapAlert:         true
+urxvt*utmpInhibit:      true
+!urxvt.perl-lib:         /usr/lib/urxvt/perl
+!urxvt*perl-ext-common:  matcher,searchable-scrollback
+urxvt*matcher.button:   1
+urxvt*urlLauncher:      dwb 
+urxvt*keysym.S-Prior:   ^[[5;2~
+urxvt*keysym.S-Next:    ^[[6;2~
+
+!xterm colors
+xterm*foreground:       #d3d3d3
+xterm*background:       #000000
+xterm*cursorColor:      orange
+xterm*color0:           #151515
+xterm*color8:           #505450
+xterm*color1:           #bf7979
+xterm*color9:           #f4a45f
+xterm*color2:           #97b26b
+xterm*color10:          #c5f779
+xterm*color3:           #cdcda1
+xterm*color11:          #ffffaf
+xterm*color4:           #4a5463
+xterm*color12:          #7d8794
+xterm*color5:           #9c3885
+xterm*color13:          #e628ba
+xterm*color6:           #88aadd
+xterm*color14:          #99ccff
+xterm*color7:           #ffffff
+xterm*color15:          #dedede
+
+
+!xterm settings
+xterm*geometry:         107x33
+xterm*dynamicColors:    true
+xterm*utf8:             2
+xterm*eightBitInput:    true
+!xterm*saveLines:        32767 ! uses shitloads of mem
+xterm*scrollTtyKeypress:true
+xterm*scrollTtyOutput:  false
+xterm*scrollBar:        false
+xterm*loginShell:       true
+xterm*faceName:         Terminus:pixelsize=14
+xterm*jumpScroll:       true
+xterm*multiScroll:      true
+xterm*toolBar:          false
+xterm*charClass:        33:48,35-38:48,39:43,42-47:48,58-59:48,61:48,63-64:48,126:48
+
+Xcursor*theme: 		Neutral
+
+Xft*dpi:                96
+Xft*antialias:          true
+Xft*hinting:            full
