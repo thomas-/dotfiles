@@ -20,7 +20,7 @@ font pango:$font $fontsize
 
 # colors
 #colourclass               border    bckgrnd    text
-client.focused             #3D8CDB   #3D8CDB    #FFFFFF  #FFFFFF
+client.focused             #7C3DDB   #7C3DDB    #FFFFFF  #FFFFFF
 client.focused_inactive    #000000   #333333    #FFFFFF
 client.unfocused           #000000   #333333    #FFFFFF
 client.urgent              #FF0000   #FF0000    #FF0000
@@ -182,8 +182,8 @@ bar {
                 background #111111
                 statusline #ffffff
                 separator #111111
-                focused_workspace  #111111 #111111 #3D8CDB
-                active_workspace   #111111 #111111 #3D8CDB
+                focused_workspace  #111111 #111111 #7C3DDB
+                active_workspace   #111111 #111111 #7C3DDB
                 inactive_workspace #111111 #111111 #aaaaaa
                 urgent_workspace   #ffffff #900000
         }
