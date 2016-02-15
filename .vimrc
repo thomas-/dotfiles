@@ -82,7 +82,8 @@ set smartcase
 set gdefault
 set incsearch
 set hlsearch
-nnoremap <leader><space> :noh<cr>
+nnoremap <silent> \ :noh<cr>
+nnoremap <silent> <leader><space> :noh<cr>
 "nnoremap <tab> %
 "vnoremap <tab> %
 
@@ -181,7 +182,7 @@ nnoremap <D-t> :CtrlP<CR>
 let g:ctrlp_match_window = 'bottom,order:ttb'
 let g:ctrlp_switch_buffer = 0
 "let g:ctrlp_working_path_mode = 0
-"let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
+let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
 
 " airline settings
 let g:airline_powerline_fonts=1
