@@ -1,4 +1,6 @@
 
+export PATH=$PATH:/usr/local/bin:~/bin/jruby/bin
+
 export EDITOR=vim
 # jj to trigger normal mode
 bindkey -M viins 'jj' vi-cmd-mode
@@ -19,8 +21,9 @@ fossil_get_current_hash() {
 }
 
 # fossil aliases
-alias fd='fossil diff --tk'
 alias f='fossil'
+alias fd='fossil diff --tk'
+alias fcm='fossil commit -m'
 alias fz=fossil_get_current_hash
 
 # useful apps

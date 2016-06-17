@@ -8,11 +8,16 @@ Plug 'bling/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-fugitive'
 Plug 'mihaifm/bufstop'
-"Plug 'wookiehangover/jshint.vim'
-Plug 'Shutnik/jshint2.vim'
+Plug 'scrooloose/syntastic'
+" Plug 'wookiehangover/jshint.vim'
+" Plug 'Shutnik/jshint2.vim'
 Plug 'jelera/vim-javascript-syntax'
+Plug 'ternjs/tern_for_vim'
 Plug 'mustache/vim-mustache-handlebars'
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
+Plug 'rking/ag.vim'
+Plug 'Chun-Yang/vim-action-ag'
 Plug 'tomtom/tcomment_vim'
 Plug 'vim-scripts/PreserveNoEOL' " preseves broken files so that people don't complain about diffs
 call plug#end()
@@ -101,6 +106,23 @@ set winminheight=0	" windows can be squished
 map <C-J> <C-W>j<C-W>_
 map <C-K> <C-W>k<C-W>_
 
+" tab navigation
+" Go to tab by number
+noremap <leader>1 1gt
+noremap <leader>2 2gt
+noremap <leader>3 3gt
+noremap <leader>4 4gt
+noremap <leader>5 5gt
+noremap <leader>6 6gt
+noremap <leader>7 7gt
+noremap <leader>8 8gt
+noremap <leader>9 9gt
+noremap <leader>0 :tablast<cr>
+" Go to last active tab
+au TabLeave * let g:lasttab = tabpagenr()
+nnoremap <silent> <c-l> :exe "tabn ".g:lasttab<cr>
+vnoremap <silent> <c-l> :exe "tabn ".g:lasttab<cr>
+
 " allow quit via single keypress (Q)
 map Q :qa<CR>
 
@@ -116,7 +138,12 @@ endif
 " toggle folds
 nnoremap <leader>ft Vatzf
 nnoremap <leader>b :BufstopFast<cr>
-nnoremap <leader>d :!fossil diff<cr>
+nnoremap <leader>g :!fossil diff<cr>
+
+" leader d to delete without replacing copy register etc
+nnoremap <leader>d "_d
+vnoremap <leader>d "_d
+vnoremap <leader>p "_dP
 
 " language specific settings
 augroup configgroup
@@ -189,6 +216,16 @@ let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
 " airline settings
 let g:airline_powerline_fonts=1
 let g:airline#extensions#whitespace#enabled = 0
+
+" syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['html'] }
 
 " jshint2
 let jshint2_read = 1
