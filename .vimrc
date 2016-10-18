@@ -12,12 +12,11 @@ Plug 'scrooloose/syntastic'
 " Plug 'wookiehangover/jshint.vim'
 " Plug 'Shutnik/jshint2.vim'
 Plug 'jelera/vim-javascript-syntax'
+Plug 'pangloss/vim-javascript'
 Plug 'ternjs/tern_for_vim'
 Plug 'mustache/vim-mustache-handlebars'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
-Plug 'rking/ag.vim'
-Plug 'Chun-Yang/vim-action-ag'
 Plug 'tomtom/tcomment_vim'
 Plug 'vim-scripts/PreserveNoEOL' " preseves broken files so that people don't complain about diffs
 call plug#end()
@@ -46,6 +45,8 @@ set expandtab               " insert spaces when pressing tab
 " ui
 set scrolloff=5             " keep X lines visible when scrolling
 set autoindent              " auto indent when editing
+set nocindent                   " ? fixes bad indenting?
+set nosmartindent               " ? fixes bad indenting?
 set showmatch               " highlight matching parens
 set showmode                " show editor mode in bottom bar
 set showcmd                 " show command in bottom bar
@@ -76,7 +77,7 @@ nnoremap <down> gj
 nnoremap <up> gk
 
 " map ; to :
-nnoremap ; :
+"nnoremap ; :
 " quick escape
 inoremap jj <ESC>
 
@@ -145,6 +146,9 @@ nnoremap <leader>d "_d
 vnoremap <leader>d "_d
 vnoremap <leader>p "_dP
 
+" surround line in "'s and <p> for quick convert from pasted docs to HSVT paragraph
+nmap <leader>p yss<p>ysit"
+
 " language specific settings
 augroup configgroup
     autocmd!
@@ -172,6 +176,10 @@ augroup configgroup
     autocmd BufEnter *.sh setlocal shiftwidth=2
     autocmd BufEnter *.sh setlocal softtabstop=2
     autocmd BufEnter *.hsvt setlocal filetype=html
+    autocmd BufEnter *.json setlocal ft=javascript
+    autocmd BufEnter *.json setlocal tabstop=2
+    autocmd BufEnter *.json setlocal shiftwidth=2
+    autocmd BufEnter *.json setlocal softtabstop=2
     autocmd FileType crontab setlocal nowritebackup
 augroup END
 
@@ -225,7 +233,7 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
-let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['html'] }
+let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['html', 'xml'] }
 
 " jshint2
 let jshint2_read = 1

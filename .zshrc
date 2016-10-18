@@ -20,13 +20,29 @@ fossil_get_current_hash() {
     fossil status | grep checkout | awk '/checkout:/{printf "["substr($2,0,10)"]"}' | pbcopy
 }
 
+fossil_merge_commit() {
+    current_branch=$(fossil status|awk '/tags/{print $2; exit;}')
+    new_branch=$1
+    fossil update
+    if fossil checkout $new_branch >/dev/null
+    then
+        fossil merge $current_branch
+        fossil commit -m "merge $current_branch into $new_branch"
+        fossil checkout $current_branch >/dev/null
+    else
+        echo "no branch named $new_branch"
+    fi
+}
+
 # fossil aliases
 alias f='fossil'
 alias fd='fossil diff --tk'
 alias fcm='fossil commit -m'
+alias fm=fossil_merge_commit
 alias fz=fossil_get_current_hash
 
 # useful apps
+alias l='ls'
 alias v='vim'
 alias hp='haplo-plugin'
 
