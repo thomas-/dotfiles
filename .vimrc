@@ -99,6 +99,11 @@ nnoremap gV `[v`]
 
 " toggle NERDTree
 map <F2> :NERDTreeToggle<CR>
+nmap <leader>m :NERDTreeToggle<CR>
+" reveal current file in NERDTree
+nmap <leader>n :NERDTreeFind<CR>
+" change directory for current window to current file location
+nnoremap <leader>cd :lcd %:p:h<CR>
 " search current working directory for word under cursor
 map <F4> :execute " grep -srnw --binary-files=without-match --exclude-dir=.git . -e " . expand("<cword>") . " " <bar> cwindow<CR>
 
@@ -106,6 +111,9 @@ map <F4> :execute " grep -srnw --binary-files=without-match --exclude-dir=.git .
 set winminheight=0	" windows can be squished
 map <C-J> <C-W>j<C-W>_
 map <C-K> <C-W>k<C-W>_
+
+" toggle paste/nopaste
+set pastetoggle=<leader>z
 
 " tab navigation
 " Go to tab by number
