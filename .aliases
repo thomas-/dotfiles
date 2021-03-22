@@ -1,0 +1,9 @@
+# Misc useful apps
+alias v='vim'
+
+# Docker
+alias dc="docker-compose"
+alias dcup="docker-compose up"
+alias dcs="docker-compose stop"
+alias dcl="docker-compose logs -f --tail=30"
+alias dcps="docker-compose ps"

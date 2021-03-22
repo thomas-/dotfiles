@@ -8,21 +8,21 @@ Plug 'bling/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-fugitive'
 Plug 'mihaifm/bufstop'
-Plug 'scrooloose/syntastic'
+" Plug 'scrooloose/syntastic'
 " Plug 'wookiehangover/jshint.vim'
 " Plug 'Shutnik/jshint2.vim'
 Plug 'jelera/vim-javascript-syntax'
 Plug 'pangloss/vim-javascript'
-Plug 'ternjs/tern_for_vim'
-Plug 'mustache/vim-mustache-handlebars'
+" Plug 'ternjs/tern_for_vim'
+" Plug 'mustache/vim-mustache-handlebars'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'tomtom/tcomment_vim'
-Plug 'vim-scripts/PreserveNoEOL' " preseves broken files so that people don't complain about diffs
+" Plug 'vim-scripts/PreserveNoEOL' " preseves broken files so that people don't complain about diffs
 call plug#end()
 
 " work only
-let g:PreserveNoEOL = 1     " preseves broken files so that people don't complain about diffs
+" let g:PreserveNoEOL = 1     " preseves broken files so that people don't complain about diffs
 
 set t_Co=256                " 256 colors
 set encoding=utf-8          " unicode encoding
