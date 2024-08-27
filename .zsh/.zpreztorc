@@ -41,6 +41,9 @@ zstyle ':prezto:load' pmodule \
   'git' \
   'history-substring-search' \
   'autosuggestions' \
+  'fasd' \
+  'fzf' \
+  'contrib-prompt' \
   'prompt'
 
 #
@@ -119,7 +122,7 @@ zstyle ':prezto:module:editor' key-bindings 'vi'
 # Set the prompt theme to load.
 # Setting it to 'random' loads a random theme.
 # Auto set to 'off' on dumb terminals.
-zstyle ':prezto:module:prompt' theme 'sorin'
+zstyle ':prezto:module:prompt' theme 'powerlevel10k'
 
 # Set the working directory prompt display length.
 # By default, it is set to 'short'. Set it to 'long' (without '~' expansion)
@@ -228,3 +231,25 @@ zstyle ':prezto:module:prompt' theme 'sorin'
 # before deleting or overwriting files. Set to 'no' to disable this safer
 # behavior.
 # zstyle ':prezto:module:utility' safe-ops 'yes'
+
+#
+# fzf
+#
+# Use keybindings
+zstyle ':prezto:module:fzf' key-bindings 'yes'
+
+# Use completion
+zstyle ':prezto:module:fzf' completion 'yes'
+
+# Set height of the fzf results (comment for full screen)
+zstyle ':prezto:module:fzf' height '30%'
+
+# Open fzf results in a tmux pane (if using tmux)
+zstyle ':prezto:module:fzf' tmux 'yes'
+
+# Set colorscheme
+# A list of available colorschemes is available in color.zsh
+# To add more color schemes of your own, consult
+# https://github.com/junegunn/fzf/wiki/Color-schemes and add values to the
+# color.zsh file accordingly
+# zstyle ':prezto:module:fzf' colorscheme 'Solarized Light'
