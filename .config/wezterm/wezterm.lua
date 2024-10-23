@@ -1,4 +1,5 @@
 local wezterm = require 'wezterm'
+local act = wezterm.action
 local config = wezterm.config_builder()
 
 config.color_scheme = 'SpaceGray Eighties'
@@ -19,10 +20,37 @@ config.freetype_load_target = 'Light'
 -- you want to keep the window controls visible and integrate
 -- them into the tab bar.
 -- config.window_decorations = 'RESIZE'
+-- config.window_decorations = 'TITLE|RESIZE'
+
+-- use default window decorations?
+config.enable_wayland = false 
 
 config.use_fancy_tab_bar = true
 config.hide_tab_bar_if_only_one_tab = true
 
+-- scroll bar
+config.enable_scroll_bar = true
+
+-- keybinds
+config.keys = {
+  {
+    key = 'E',
+    mods = 'CTRL|SHIFT',
+    action = act.PromptInputLine {
+      description = 'Enter new name for tab',
+      action = wezterm.action_callback(function(window, pane, line)
+        -- line will be `nil` if they hit escape without entering anything
+        -- An empty string if they just hit enter
+        -- Or the actual line of text they wrote
+        if line then
+          window:active_tab():set_title(line)
+        end
+      end),
+    },
+  },
+}
+
+-- top right status info
 local function segments_for_right_status(window, pane)
   local segments = {}
   local google_ops = pane:get_user_vars()['google-ops']
