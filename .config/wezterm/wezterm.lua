@@ -3,6 +3,15 @@ local act = wezterm.action
 local config = wezterm.config_builder()
 
 config.color_scheme = 'SpaceGray Eighties'
+function scheme_for_appearance(appearance)
+  if appearance:find 'Dark' then
+    return 'SpaceGray Eighties'
+    -- return 'nightfox'
+  else
+    return 'dawnfox'
+    -- return 'Catppuccin Latte'
+  end
+end
 -- config.color_scheme = 'OneDark (base16)'
 -- config.bold_brightens_ansi_colors = 'No' -- change scheme and comment out
 
@@ -25,7 +34,8 @@ config.freetype_load_target = 'Light'
 -- use default window decorations?
 config.enable_wayland = false 
 
-config.use_fancy_tab_bar = true
+-- fancy tab bar isn't themed by color schemes
+config.use_fancy_tab_bar = false
 config.hide_tab_bar_if_only_one_tab = true
 
 -- scroll bar
@@ -50,6 +60,17 @@ config.keys = {
   },
 }
 
+-- light/dark mode follow system settings
+wezterm.on('window-config-reloaded', function(window, pane)
+  local overrides = window:get_config_overrides() or {}
+  local appearance = window:get_appearance()
+  local scheme = scheme_for_appearance(appearance)
+  if overrides.color_scheme ~= scheme then
+    overrides.color_scheme = scheme
+    window:set_config_overrides(overrides)
+  end
+end)
+
 -- top right status info
 local function segments_for_right_status(window, pane)
   local segments = {}
@@ -71,18 +92,19 @@ wezterm.on('update-status', function(window, pane)
   -- a Color object, which comes with functionality for lightening
   -- or darkening the colour (amongst other things).
   local bg = wezterm.color.parse(color_scheme.background)
+  local tab_bar_bg = wezterm.color.parse(color_scheme.tab_bar and color_scheme.tab_bar.background or '#333333')
   local fg = color_scheme.foreground
 
   -- Each powerline segment is going to be coloured progressively
   -- darker/lighter depending on whether we're on a dark/light colour
   -- scheme. Let's establish the "from" and "to" bounds of our gradient.
+  local appearance = window:get_appearance()
   local gradient_to, gradient_from = bg
-  --   if appearance.is_dark() then
-  --     gradient_from = gradient_to:lighten(0.2)
-  --   else
-  --     gradient_from = gradient_to:darken(0.2)
-  --   end
-  gradient_from = gradient_to:lighten(0.2)
+    if appearance:find "Dark" then
+      gradient_from = gradient_to:lighten(0.2)
+    else
+      gradient_from = gradient_to:darken(0.2)
+    end
 
   -- Yes, WezTerm supports creating gradients, because why not?! Although
   -- they'd usually be used for setting high fidelity gradients on your terminal's
@@ -103,7 +125,8 @@ wezterm.on('update-status', function(window, pane)
     local is_first = i == 1
 
     if is_first then
-      table.insert(elements, { Background = { Color = 'none' } })
+      -- table.insert(elements, { Background = { Color = 'none' } })
+      table.insert(elements, { Background = { Color = tab_bar_bg } })
     end
     table.insert(elements, { Foreground = { Color = gradient[i] } })
     table.insert(elements, { Text = SOLID_LEFT_ARROW })
