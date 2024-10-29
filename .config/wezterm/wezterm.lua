@@ -1,8 +1,26 @@
 local wezterm = require 'wezterm'
+-- Logging: wezterm.log_info 'log'
 local act = wezterm.action
 local config = wezterm.config_builder()
 
 config.color_scheme = 'SpaceGray Eighties'
+-- config.color_scheme = 'OneDark (base16)'
+-- config.bold_brightens_ansi_colors = 'No' -- change scheme and comment out
+
+function scheme_for_env(env)
+  if env == 'production' then
+    return 'Red Alert'
+  elseif env == 'staging' then
+    -- return 'Ocean'
+    return 'Nova (base16)'
+  elseif env == 'ops' then
+    -- return 'Belafonte Day'
+    return 'Man Page'
+  elseif env == 'error' then
+    return 'Mono Red (Gogh)'
+  end
+end
+
 function scheme_for_appearance(appearance)
   if appearance:find 'Dark' then
     return 'SpaceGray Eighties'
@@ -12,8 +30,6 @@ function scheme_for_appearance(appearance)
     -- return 'Catppuccin Latte'
   end
 end
--- config.color_scheme = 'OneDark (base16)'
--- config.bold_brightens_ansi_colors = 'No' -- change scheme and comment out
 
 -- Matches Ubuntu default terminal
 config.font = wezterm.font('Ubuntu Mono')
@@ -62,9 +78,23 @@ config.keys = {
 
 -- light/dark mode follow system settings
 wezterm.on('window-config-reloaded', function(window, pane)
+  local env = pane:get_user_vars()['env']
+  if env == nil or env == '' then -- only change scheme if env not overriding
+    local overrides = window:get_config_overrides() or {}
+    local appearance = window:get_appearance()
+    local scheme = scheme_for_appearance(appearance)
+    if overrides.color_scheme ~= scheme then
+      overrides.color_scheme = scheme
+      window:set_config_overrides(overrides)
+    end
+  end
+end)
+
+-- change scheme depending on env
+wezterm.on('user-var-changed', function(window, pane)
   local overrides = window:get_config_overrides() or {}
-  local appearance = window:get_appearance()
-  local scheme = scheme_for_appearance(appearance)
+  local env = pane:get_user_vars()['env']
+  local scheme = scheme_for_env(env) or scheme_for_appearance(window:get_appearance())
   if overrides.color_scheme ~= scheme then
     overrides.color_scheme = scheme
     window:set_config_overrides(overrides)
@@ -74,9 +104,9 @@ end)
 -- top right status info
 local function segments_for_right_status(window, pane)
   local segments = {}
-  local google_ops = pane:get_user_vars()['google-ops']
-  if not (google_ops == nil or google_ops == 'no') then
-    table.insert(segments, 'google-ops: ' .. google_ops)
+  local env = pane:get_user_vars()['env']
+  if not (env == nil or env == '') then
+    table.insert(segments, 'env: ' .. env)
   end
   -- table.insert(segments, wezterm.strftime('%a %b %-d %H:%M'))
   table.insert(segments, wezterm.hostname())

@@ -58,27 +58,27 @@ set_env_if_google_ops() {
         local google_ops_env=$(gcloud config get project)
         case $google_ops_env in
             *ol-prod*)
-                printf "\x1b]11;#660011\x1b\\"
-                __wezterm_set_user_var "google-ops" "production"
+                # printf "\x1b]11;#660011\x1b\\"
+                __wezterm_set_user_var "env" "production"
                 ;;
             *ol-stag*)
-                printf "\x1b]11;#110066\x1b\\"
-                __wezterm_set_user_var "google-ops" "staging"
+                # printf "\x1b]11;#110066\x1b\\"
+                __wezterm_set_user_var "env" "staging"
                 ;;
             *overleaf-ops*)
-                printf "\x1b]11;#353500\x1b\\"
-                __wezterm_set_user_var "google-ops" "ops"
+                # printf "\x1b]11;#353500\x1b\\"
+                __wezterm_set_user_var "env" "ops"
                 ;;
             *)
-                printf "\x1b]11;#ee0000\x1b\\"
+                # printf "\x1b]11;#ee0000\x1b\\"
                 echo "bad google-ops env value $google_ops_env"
-                __wezterm_set_user_var "google-ops" "error"
+                __wezterm_set_user_var "env" "error"
                 ;;
         esac
     elif [ "${OLDPWD##*/}" = "google-ops" ] ; then
         # reset
-        printf "\x1b]111\x1b\\"
-        __wezterm_set_user_var "google-ops" "no"
+        # printf "\x1b]111\x1b\\"
+        __wezterm_set_user_var "env" ""
     fi
 }
 add-zsh-hook precmd set_env_if_google_ops
